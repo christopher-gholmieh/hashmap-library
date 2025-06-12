@@ -4,6 +4,8 @@ This is a simple, modern hashmap library written in C with the goal of simplicit
 ## Documentation
 Available methods:
 ```c
+// NOTE: All values stored must be casted to (void*) pointers to be stored.
+
 void hashmap_destroy(hashmap_t* hashmap);
 hashmap_t* hashmap_initialize(void);
 
