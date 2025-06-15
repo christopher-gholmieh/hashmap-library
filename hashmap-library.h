@@ -45,7 +45,7 @@ int hashmap_resize(hashmap_t* hashmap);
 int hashmap_append(hashmap_t* hashmap, char* key, void* value);
 
 // Functions:
-inline hashmap_t* hashmap_initialize(void) {
+hashmap_t* hashmap_initialize(void) {
     // Variables (Assignment):
     // Hashmap:
     hashmap_t* hashmap = (hashmap_t*) malloc(sizeof(hashmap_t));
@@ -101,7 +101,7 @@ inline hashmap_t* hashmap_initialize(void) {
     return hashmap;
 }
 
-inline uint64_t hashmap_hash_key(char* key) {
+uint64_t hashmap_hash_key(char* key) {
     // Variables (Assignment):
     // Prime:
     uint64_t fnv_prime = 1099511628211ULL;
@@ -124,7 +124,7 @@ inline uint64_t hashmap_hash_key(char* key) {
     return hash;
 }
 
-inline int hashmap_resize(hashmap_t* hashmap) {
+int hashmap_resize(hashmap_t* hashmap) {
     // Variables (Assignment):
     // Capacity:
     size_t updated_capacity = hashmap->capacity * 2;
@@ -191,7 +191,7 @@ inline int hashmap_resize(hashmap_t* hashmap) {
     return SUCCESSFUL_OPERATION;
 }
 
-inline int hashmap_append(hashmap_t *hashmap, char* key, void *value) {
+int hashmap_append(hashmap_t *hashmap, char* key, void *value) {
     // Resize:
     if (hashmap->length >= hashmap->capacity * 0.75) {
         if (hashmap_resize(hashmap) == UNSUCCESSFUL_OPERATION) {
@@ -236,7 +236,7 @@ inline int hashmap_append(hashmap_t *hashmap, char* key, void *value) {
     return SUCCESSFUL_OPERATION;
 }
 
-inline void* hashmap_get(hashmap_t* hashmap, char* key) {
+void* hashmap_get(hashmap_t* hashmap, char* key) {
     // Variables (Assignment):
     // Bucket:
     size_t bucket = hashmap_hash_key(key) & (hashmap->capacity - 1);
@@ -261,7 +261,7 @@ inline void* hashmap_get(hashmap_t* hashmap, char* key) {
     return NULL;
 }
 
-inline void hashmap_destroy(hashmap_t* hashmap) {
+void hashmap_destroy(hashmap_t* hashmap) {
     for (size_t iterator = 0; iterator < hashmap->capacity; iterator++) {
         if (hashmap->values[iterator] != NULL) {
             free(hashmap->values[iterator]);
